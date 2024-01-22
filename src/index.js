@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const toyCollection = document.querySelector("#toy-collection")
   document.querySelector(".add-toy-form").addEventListener("submit", handleAddNewToy);
-  
+
   fetch(toyAPI)
     .then(res => res.json())
     .then(toys => {
@@ -52,20 +52,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleAddLike(toy) {
     const likes = toy.likes + 1;
-    
+
     fetch(`${toyAPI}/${toy.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({likes})
+      body: JSON.stringify({ likes })
     })
-    .then(res => res.json())
-    .then(() => {
-      toy.likes = likes;
-      renderToys(toyList)
-    })
+      .then(res => res.json())
+      .then(() => {
+        toy.likes = likes;
+        renderToys(toyList)
+      })
   }
 
   function handleAddNewToy(e) {
@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: JSON.stringify(newToyData)
     })
-    .then(res => res.json())
-    .then(renderToy);
+      .then(res => res.json())
+      .then(renderToy);
 
     e.target.reset();
   }
@@ -129,3 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((object) => console.log(object))
   })*/
 })
+
+fetch('https://fakestoreapi.com/carts')
+  .then(res => res.json())
+  .then(json => console.log(json))
